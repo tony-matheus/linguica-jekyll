@@ -84,10 +84,14 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    position: relative;
 
     img {
       object-fit: cover;
+      width: 100%;
+      height: 100%;
     }
+
   }
 
   .hero-latest-posts-mobile {
@@ -187,5 +191,75 @@
         height: 39.2px; // Fixed height for exactly 2 lines (14 * 1.4 * 2)
       }
     }
+  }
+}
+
+
+
+
+.signature-overlay {
+  // position: absolute;
+  // inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+
+  width: 300px;
+  height: auto;
+
+
+  @media screen and (max-width: $mobileW) {
+    width: 150px;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+
+    // Override original colors to match theme
+    g {
+      fill: transparent;
+    }
+
+    path {
+      // Configured via JS dynamically
+      stroke-dasharray: var(--path-length, 10000);
+      stroke-dashoffset: var(--path-length, 10000);
+
+      stroke: #4da3ff;
+      stroke-width: 15; // works well with potrace outlines
+      fill: transparent;
+
+      // ease-out for entrance animations
+      animation:
+        drawSignature 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards,
+        fillSignature 0.5s ease-in-out forwards;
+
+      animation-delay: var(--path-delay, 0ms), calc(1.5s + var(--path-delay, 0ms));
+      will-change: stroke-dashoffset, fill;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none !important;
+        stroke-dashoffset: 0 !important;
+        fill: #4da3ff !important;
+        stroke: transparent !important;
+      }
+    }
+  }
+}
+
+@keyframes drawSignature {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillSignature {
+  to {
+    fill: #4da3ff;
+    stroke: transparent;
   }
 }

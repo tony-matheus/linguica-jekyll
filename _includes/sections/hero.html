@@ -16,13 +16,16 @@
       </div>
 
       <div class="hero-content">
-        <div>
+        <div style="display: flex; flex-direction: column; align-items: center;">
           <h1 class="hero-title">
             {{ site.plainwhite.name }}
           </h1>
           <p class="hero-subtitle">
             {{ site.plainwhite.subtitle }}
           </p>
+          <div class="signature-overlay">
+            {% include components/icons/signature.svg %}
+          </div>
         </div>
       </div>
     </div>
