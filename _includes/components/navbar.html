@@ -1,0 +1,88 @@
+<nav id="navbar">
+  <div class="navbar-container">
+    <!-- LEFT: Profile -->
+    <div class="navbar-home">
+      <a href="{{ " /" | relative_url }}" class="navbar-brand">
+        <img class="navbar-avatar" src="{{ site.baseurl }}/{{ site.plainwhite.portfolio_image }}"
+          alt="{{ site.plainwhite.name }}" />
+        <span class="navbar-name">{{ site.plainwhite.name }}</span>
+      </a>
+    </div>
+
+    <!-- CENTER: Search -->
+
+    <!-- RIGHT: Dark mode toggle -->
+    <div class="navbar-actions">
+
+      <div class="navbar-center">
+        <!-- Variant 1: default (pill ghost) -->
+        <button class="search-btn search-btn--pill" id="searchToggle" aria-label="Open search">
+          <svg class="search-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <span class="search-btn__label">Search</span>
+          <kbd class="search-btn__kbd"><span>⌘</span>K</kbd>
+        </button>
+
+        <!-- Variant 2: icon-only (compact) — add class search-btn--icon to body or toggle as needed -->
+        <button class="search-btn search-btn--icon" aria-label="Search" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+
+        <!-- Variant 3: full (branded) — used on wider layouts -->
+        <button class="search-btn search-btn--full" aria-label="Search posts" style="display:none;">
+          <svg class="search-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <span class="search-btn__label">Search posts…</span>
+        </button>
+      </div>
+      {% capture toggle_content %}
+      <span class="theme-toggle__track">
+        <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+          {% include components/icons/sun-icon.svg %}
+        </span>
+        <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+          {% include components/icons/moon-icon.svg %}
+        </span>
+      </span>
+      {% endcapture %}
+
+      {% include components/button.html
+      variant="ghost"
+      class="theme-toggle"
+      id="themeToggle"
+      aria_label="Toggle dark mode"
+      onclick="animateToggle()"
+      content=toggle_content
+      %}
+    </div>
+  </div>
+</nav>
+
+<script>
+  function animateToggle() {
+    toggleDarkMode()
+    var icons = document.querySelectorAll('.theme-toggle__icon');
+    icons.forEach(function (icon) {
+      icon.style.transition = 'none';
+      icon.style.filter = 'blur(2px)';
+      icon.style.opacity = '0';
+    });
+    setTimeout(function () {
+      icons.forEach(function (icon) {
+        icon.style.transition = 'filter 180ms ease-out, opacity 180ms ease-out';
+        icon.style.filter = '';
+        icon.style.opacity = '';
+      });
+    }, 120);
+  }
+</script>

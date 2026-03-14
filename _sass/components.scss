@@ -1,0 +1,48 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--card-foreground);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  transition: background 150ms ease, border-color 150ms ease, transform 100ms ease-in-out;
+
+  svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    stroke: currentColor;
+  }
+
+  &:hover {
+    transform: scale(0.98);
+    background-color: color-mix(in oklab, var(--input) 50%, transparent);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    &:active { transform: none; }
+  }
+
+  &[data-variant='secondary'] {
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+  }
+
+  &[data-variant='ghost'] {
+    background: transparent;
+    border-color: transparent;
+    color: var(--foreground);
+
+    &:hover {
+      background-color: color-mix(in oklab, var(--input) 50%, transparent);
+    }
+  }
+}

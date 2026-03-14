@@ -1,0 +1,13 @@
+<button 
+  class="btn {% if include.class %}{{ include.class }}{% endif %}" 
+  {% if include.variant %}data-variant="{{ include.variant }}"{% endif %}
+  {% if include.id %}id="{{ include.id }}"{% endif %}
+  {% if include.aria_label %}aria-label="{{ include.aria_label }}"{% endif %}
+  {% if include.onclick %}onclick="{{ include.onclick }}"{% endif %}
+>
+  {% if include.content %}
+    {{ include.content }}
+  {% elsif include.label %}
+    <span class="btn__label">{{ include.label }}</span>
+  {% endif %}
+</button>

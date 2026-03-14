@@ -2,6 +2,9 @@
 ---
 
 @import "plain";
+@import "navbar";
+@import "hero";
+@import "components";
 
 {% if site.plainwhite.search %}
   @import "search";

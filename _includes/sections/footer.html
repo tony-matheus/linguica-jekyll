@@ -1,0 +1,35 @@
+<footer class="footer">
+  <div class="footer-navigation-container">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <h5 class="footer-name">{{site.plainwhite.name}}</h5>
+          <p>{{site.plainwhite.footer.description}}</p>
+
+        </div>
+        <div class="footer-navigation-links-container">
+          <h5 class="footer-name">Navigation</h5>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+        </div>
+        <div class="footer-social-links-container">
+          <h5 class="footer-name">Socials</h5>
+          {% include components/socials.html %}
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright-container">
+      <div class="container">
+        <div class="footer-copyright">
+          <p>© 2026 {{ site.plainwhite.name }}.
+            {% if site.plainwhite.credits %}
+            <span>Made with ❤️ by <a href="https://tonylinguica.dev">Tony Linguiça</a>.</span>
+            {% endif %}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
