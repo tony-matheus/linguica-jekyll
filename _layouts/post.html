@@ -2,7 +2,7 @@
 layout: default
 ---
 
-{%- assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" -%}
+{%- assign date_format = site.linguica.date_format | default: "%b %-d, %Y" -%}
 {% include components/post-banner.html.liquid %}
 
 <div class="container">
@@ -23,7 +23,7 @@ layout: default
   </div>
   <div class="post-container">
     <div class="post">{{ content }}</div>
-    {%- if site.plainwhite.disqus_shortname -%}
+    {%- if site.linguica.disqus_shortname -%}
     <div id="disqus_thread" style="margin-top: 25px"></div>
     <script>
       var disqus_config = function () {
@@ -34,7 +34,7 @@ layout: default
         var d = document,
           s = d.createElement("script");
         s.src =
-          "https://{{ site.plainwhite.disqus_shortname }}.disqus.com/embed.js";
+          "https://{{ site.linguica.disqus_shortname }}.disqus.com/embed.js";
         s.setAttribute("data-timestamp", +new Date());
         (d.head || d.body).appendChild(s);
       })();

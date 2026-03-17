@@ -7,7 +7,7 @@
 {% assign rotations_end = '-10, -10, -10, -10, -10, -10' | split: ',' %}
 
 {% assign posts_count = site.posts | size %}
-{% if site.plainwhite.posts_bubbles and posts_count >= 4 %}
+{% if site.linguica.posts_bubbles and posts_count >= 4 %}
   {% for post in site.posts limit: 6 %}
     {% assign i = forloop.index0 %}
     {% assign p_top = positions_top[i] | append: 'px' %}

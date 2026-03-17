@@ -1,4 +1,4 @@
-{% assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" %}
+{% assign date_format = site.linguica.date_format | default: '%b %-d, %Y' %}
 <article class="post-vertical-card">
   <a class="post-vertical-card__link" href="{{ post.url | relative_url }}">
     <time class="post-vertical-card__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
@@ -12,21 +12,19 @@
           src="{{ site.baseurl }}/{{ post.image }}"
           alt="{{ post.title | escape }}"
           loading="lazy"
-        />
+        >
       </div>
     {% endif %}
   </a>
   <p class="post-vertical-card__author">
     by
     <i class="icon-user" aria-hidden="true"></i>
-    {{ post.author | default: site.plainwhite.name }}
+    {{ post.author | default: site.linguica.name }}
   </p>
   {% if site.show_excerpts and post.excerpt %}
     <div class="post-vertical-card__excerpt">
       {{ post.excerpt }}
     </div>
   {% endif %}
-  <a class="post-vertical-card__read-more" href="{{ post.url | relative_url }}">
-    → Read Article
-  </a>
+  <a class="post-vertical-card__read-more" href="{{ post.url | relative_url }}"> → Read Article </a>
 </article>

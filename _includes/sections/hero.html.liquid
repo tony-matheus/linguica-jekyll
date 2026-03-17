@@ -3,19 +3,19 @@
     <div class="hero-content-wrapper">
       <div class="hero-img-wrapper">
         <div class="img">
-          {% if site.plainwhite.portfolio_image_dark and site.plainwhite.dark_mode %}
+          {% if site.linguica.portfolio_image_dark and site.linguica.dark_mode %}
             <img
               class="light"
-              src="{{site.baseurl }}/{{ site.plainwhite.portfolio_image }}"
-              alt="{{ site.plainwhite.name }}"
+              src="{{site.baseurl }}/{{ site.linguica.portfolio_image }}"
+              alt="{{ site.linguica.name }}"
             >
             <img
               class="dark"
-              src="{{site.baseurl }}/{{ site.plainwhite.portfolio_image_dark }}"
-              alt="{{ site.plainwhite.name }}"
+              src="{{site.baseurl }}/{{ site.linguica.portfolio_image_dark }}"
+              alt="{{ site.linguica.name }}"
             >
           {% else %}
-            <img src="{{site.baseurl }}/{{ site.plainwhite.portfolio_image }}" alt="{{ site.plainwhite.name }}">
+            <img src="{{site.baseurl }}/{{ site.linguica.portfolio_image }}" alt="{{ site.linguica.name }}">
           {% endif %}
         </div>
       </div>
@@ -23,12 +23,12 @@
       <div class="hero-content">
         <div style="display: flex; flex-direction: column; align-items: center;">
           <h1 class="hero-title">
-            {{ site.plainwhite.name }}
+            {{ site.linguica.name }}
           </h1>
           <p class="hero-subtitle">
-            {{ site.plainwhite.subtitle }}
+            {{ site.linguica.subtitle }}
           </p>
-          {% if site.plainwhite.signature.enabled and (site.plainwhite.signature.position == 'hero' or site.plainwhite.signature.position == 'both') %}
+          {% if site.linguica.signature.enabled and (site.linguica.signature.position == 'hero' or site.linguica.signature.position == 'both') %}
             <div class="signature-overlay">
               {% include components/icons/signature.svg %}
             </div>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    {% if site.plainwhite.posts_carousel %}
+    {% if site.linguica.posts_carousel %}
       <div class="hero-latest-posts-mobile">
         <h2 class="latest-posts-title">Latests posts</h2>
         <div class="carousel-container">

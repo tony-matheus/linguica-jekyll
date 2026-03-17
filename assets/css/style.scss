@@ -6,12 +6,12 @@
 @import "hero";
 @import "components";
 
-{% if site.plainwhite.search %}
+{% if site.linguica.search %}
   @import "search";
   @import "search-modal";
 {% endif %}
 
-{%- if site.plainwhite.dark_mode -%}
+{%- if site.linguica.dark_mode -%}
   @import "toggle";
   @import "dark";
 {%- endif -%}

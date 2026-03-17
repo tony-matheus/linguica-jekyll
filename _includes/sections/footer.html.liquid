@@ -3,10 +3,10 @@
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand">
-          <h5 class="footer-name">{{ site.plainwhite.name }}</h5>
-          <p>{{ site.plainwhite.footer.description }}</p>
+          <h5 class="footer-name">{{ site.linguica.name }}</h5>
+          <p>{{ site.linguica.footer.description }}</p>
 
-          {% if site.plainwhite.signature.enabled and (site.plainwhite.signature.position == 'footer' or site.plainwhite.signature.position == 'both') %}
+          {% if site.linguica.signature.enabled and (site.linguica.signature.position == 'footer' or site.linguica.signature.position == 'both') %}
             <div class="signature-overlay signature-overlay-footer">
               {% include components/icons/signature.svg %}
             </div>
@@ -29,8 +29,8 @@
       <div class="container">
         <div class="footer-copyright">
           <p>
-            © 2026 {{ site.plainwhite.name }}.
-            {% if site.plainwhite.credits %}
+            © 2026 {{ site.linguica.name }}.
+            {% if site.linguica.credits %}
               <span>Made with ❤️ by <a href="https://tonylinguica.dev">Tony Linguiça</a>.</span>
             {% endif %}
           </p>
