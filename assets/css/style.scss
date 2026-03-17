@@ -8,6 +8,7 @@
 
 {% if site.plainwhite.search %}
   @import "search";
+  @import "search-modal";
 {% endif %}
 
 {%- if site.plainwhite.dark_mode -%}

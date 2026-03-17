@@ -1,0 +1,20 @@
+{% assign banner_image = page.image | default: post.image %}
+{% assign banner_mode = site.plainwhite.post_banner | default: 'color' %}
+
+{% if banner_image and banner_mode != 'none' %}
+  <section class="post-banner" data-post-banner data-post-banner-mode="{{ banner_mode }}">
+    <div class="post-banner__bg" data-post-banner-bg></div>
+    <div class="post-banner__inner container">
+      <div class="post-banner__media">
+        <img
+          src="{{ site.baseurl }}/{{ banner_image }}"
+          alt="{{ page.title | default: post.title | escape }}"
+          loading="lazy"
+          class="post-banner__image"
+          data-post-banner-image
+        >
+      </div>
+    </div>
+  </section>
+{% endif %}
+

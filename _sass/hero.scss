@@ -9,6 +9,10 @@
   position: relative;
   overflow-x: hidden;
 
+  @media screen and (min-width: $bigScreenW) {
+    height: calc(50vh - var(--navbar-size));
+  }
+
   @media screen and (max-width: $mobileW) {
     align-items: start;
   }
@@ -187,6 +191,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        color: var(--foreground);
       }
 
       .post-card-desc {
@@ -273,8 +278,9 @@
 
 .latest-post-floating-card {
   width: 192px;
-  height: 142px;
-  border-radius: 24px;
+  height: 162px;
+  border-radius: 16px;
+  overflow: hidden;
   box-shadow:
     0 0 2px #00000026,
     0 8px 40px #0000000a,
@@ -284,12 +290,8 @@
   position: absolute;
   z-index: 100;
   will-change: transform, opacity;
-  padding: 16px;
   text-decoration: none;
   color: var(--foreground);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   transition: border-color 150ms ease;
 
   &:hover {
@@ -310,6 +312,7 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: var(--foreground);
   }
 
   .post-card-desc {
@@ -321,6 +324,30 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+
+  .card-content__thumb {
+    width: 100%;
+    height: 70px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-content__body {
+    padding: 8px;
   }
 }
 

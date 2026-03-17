@@ -5,43 +5,25 @@ layout: default
 {% include sections/hero.html.liquid %} {%- if page.title -%}
 <h1 class="page-heading">{{ page.title }}</h1>
 {%- endif -%} {%- if site.posts.size > 0 -%}
-<ul class="posts">
-  <li class="posts-labelgroup" id="posts-labelgroup">
-    <h1 id="posts-label">posts</h1>
-    {% if site.plainwhite.search %}
-    <div class="search-container">
-      <div class="search-section">
-        <i class="icon-search"></i>
-        <input
-          type="text"
-          name="search"
-          id="searchbar"
-          autocomplete="off"
-          aria-label="search in posts"
-        />
+<div class="container">
+  <ul class="posts">
+    <li class="posts-labelgroup" id="posts-labelgroup">
+      <h1 id="posts-label">posts</h1>
+    </li>
+
+    {%- for post in site.posts -%}
+    <li>
+      <div class="post-card--mobile">
+        {% include components/posts/post-horizontal-card.html.liquid post=post
+        %}
       </div>
-      <div
-        class="search-results"
-        id="search-results"
-        data-placeholder="No Results"
-        style="display: none"
-      ></div>
-    </div>
-    {% endif %}
-  </li>
-
-  {%- for post in site.posts -%}
-  <li>
-    <div class="post-card--mobile">
-      {% include components/posts/post-horizontal-card.html.liquid post=post %}
-    </div>
-    <div class="post-card--desktop">
-      {% include components/posts/post-vertical-card.html.liquid post=post %}
-    </div>
-  </li>
-  {%- endfor -%}
-</ul>
-
+      <div class="post-card--desktop">
+        {% include components/posts/post-vertical-card.html.liquid post=post %}
+      </div>
+    </li>
+    {%- endfor -%}
+  </ul>
+</div>
 <!-- <p class="feed-subscribe"><svg class="svg-icon orange">
 		<use xlink:href="{{ '/assets/minima-social-icons.svg#rss' | relative_url }}"></use>
 	</svg><a href="{{ "/feed.xml" | relative_url }}">Subscribe</a></p> -->
