@@ -1,0 +1,73 @@
+{% assign id = include.id | default: 'default' %}
+{% assign post = include.post %}
+<a
+  href="{{ post.url | relative_url }}"
+  class="latest-post-floating-card"
+  id="card-{{ id }}"
+  style="
+    {% if include.top %}top: {{ include.top }};{% endif %}
+    {% if include.bottom %}bottom: {{ include.bottom }};{% endif %}
+    {% if include.left %}left: {{ include.left }};{% endif %}
+    {% if include.right %}right: {{ include.right }};{% endif %}
+    transform: rotate({{ include.start_rotate | default: 9.087 }}deg) translate({{ include.start_x | default: -100 }}px, {{ include.start_y | default: 4 }}px);
+    opacity: 1;
+  "
+  data-start-rotate="{{ include.start_rotate | default: 9.087 }}"
+  data-end-rotate="{{ include.end_rotate | default: -10 }}"
+  data-start-x="{{ include.start_x | default: -100 }}"
+  data-end-x="{{ include.end_x | default: 200 }}"
+  data-start-y="{{ include.start_y | default: 4 }}"
+  data-end-y="{{ include.end_y | default: -10 }}"
+>
+  <div class="card-content">
+    <h3 class="post-card-title">{{ post.title }}</h3>
+    <p class="post-card-desc">
+      {{ post.excerpt | strip_html | truncatewords: 8 }}
+    </p>
+  </div>
+</a>
+
+<script>
+  (function () {
+    // Only initialize the observer once
+    if (window.HeroAnimationObserverInitialized) return;
+    window.HeroAnimationObserverInitialized = true;
+
+    const lerp = (start, end, progress) => start + (end - start) * progress;
+
+    const observerOptions = {
+      root: null,
+      threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.target.classList.contains('hero')) {
+          const progress = 1 - entry.intersectionRatio;
+
+          document.querySelectorAll('.latest-post-floating-card').forEach((card) => {
+            const config = card.dataset;
+
+            const startR = parseFloat(config.startRotate);
+            const endR = parseFloat(config.endRotate);
+            const startX = parseFloat(config.startX);
+            const endX = parseFloat(config.endX);
+            const startY = parseFloat(config.startY);
+            const endY = parseFloat(config.endY);
+
+            const rotate = lerp(startR, endR, progress);
+            const tx = lerp(startX, endX, progress);
+            const ty = lerp(startY, endY, progress);
+            const opacity = 1 - progress; // From 1 to 0
+
+            card.style.transform = `rotate(${rotate}deg) translate(${tx}px, ${ty}px)`;
+            card.style.opacity = opacity;
+          });
+        }
+      });
+    }, observerOptions);
+
+    const hero = document.querySelector('.hero');
+    if (hero) observer.observe(hero);
+  })();
+</script>

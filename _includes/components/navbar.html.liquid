@@ -3,8 +3,11 @@
     <!-- LEFT: Profile -->
     <div class="navbar-home">
       <a href="{{ " /" | relative_url }}" class="navbar-brand">
-        <img class="navbar-avatar" src="{{ site.baseurl }}/{{ site.plainwhite.portfolio_image }}"
-          alt="{{ site.plainwhite.name }}" />
+        <img
+          class="navbar-avatar"
+          src="{{ site.baseurl }}/{{ site.plainwhite.portfolio_image }}"
+          alt="{{ site.plainwhite.name }}"
+        >
         <span class="navbar-name">{{ site.plainwhite.name }}</span>
       </a>
     </div>
@@ -13,12 +16,18 @@
 
     <!-- RIGHT: Dark mode toggle -->
     <div class="navbar-actions">
-
       <div class="navbar-center">
-        <!-- Variant 1: default (pill ghost) -->
         <button class="search-btn search-btn--pill" id="searchToggle" aria-label="Open search">
-          <svg class="search-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            class="search-btn__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <circle cx="11" cy="11" r="8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
@@ -26,19 +35,32 @@
           <kbd class="search-btn__kbd"><span>⌘</span>K</kbd>
         </button>
 
-        <!-- Variant 2: icon-only (compact) — add class search-btn--icon to body or toggle as needed -->
         <button class="search-btn search-btn--icon" aria-label="Search" style="display:none;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <circle cx="11" cy="11" r="8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
         </button>
 
-        <!-- Variant 3: full (branded) — used on wider layouts -->
         <button class="search-btn search-btn--full" aria-label="Search posts" style="display:none;">
-          <svg class="search-btn__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg
+            class="search-btn__icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <circle cx="11" cy="11" r="8" />
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
@@ -56,13 +78,14 @@
       </span>
       {% endcapture %}
 
-      {% include components/button.html
-      variant="ghost"
-      class="theme-toggle"
-      id="themeToggle"
-      aria_label="Toggle dark mode"
-      onclick="animateToggle()"
-      content=toggle_content
+      {%
+        include components/button.html.liquid
+        variant="ghost"
+        class="theme-toggle"
+        id="themeToggle"
+        aria_label="Toggle dark mode"
+        onclick="animateToggle()"
+        content=toggle_content
       %}
     </div>
   </div>
@@ -70,7 +93,7 @@
 
 <script>
   function animateToggle() {
-    toggleDarkMode()
+    toggleDarkMode();
     var icons = document.querySelectorAll('.theme-toggle__icon');
     icons.forEach(function (icon) {
       icon.style.transition = 'none';

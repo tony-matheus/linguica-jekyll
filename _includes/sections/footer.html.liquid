@@ -3,9 +3,14 @@
     <div class="container">
       <div class="footer-main">
         <div class="footer-brand">
-          <h5 class="footer-name">{{site.plainwhite.name}}</h5>
-          <p>{{site.plainwhite.footer.description}}</p>
+          <h5 class="footer-name">{{ site.plainwhite.name }}</h5>
+          <p>{{ site.plainwhite.footer.description }}</p>
 
+          {% if site.plainwhite.signature.enabled and (site.plainwhite.signature.position == 'footer' or site.plainwhite.signature.position == 'both') %}
+            <div class="signature-overlay signature-overlay-footer">
+              {% include components/icons/signature.svg %}
+            </div>
+          {% endif %}
         </div>
         <div class="footer-navigation-links-container">
           <h5 class="footer-name">Navigation</h5>
@@ -16,16 +21,17 @@
         </div>
         <div class="footer-social-links-container">
           <h5 class="footer-name">Socials</h5>
-          {% include components/socials.html %}
+          {% include components/socials.html.liquid %}
         </div>
       </div>
     </div>
     <div class="footer-copyright-container">
       <div class="container">
         <div class="footer-copyright">
-          <p>© 2026 {{ site.plainwhite.name }}.
+          <p>
+            © 2026 {{ site.plainwhite.name }}.
             {% if site.plainwhite.credits %}
-            <span>Made with ❤️ by <a href="https://tonylinguica.dev">Tony Linguiça</a>.</span>
+              <span>Made with ❤️ by <a href="https://tonylinguica.dev">Tony Linguiça</a>.</span>
             {% endif %}
           </p>
         </div>

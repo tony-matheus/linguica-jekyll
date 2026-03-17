@@ -1,0 +1,59 @@
+<section class="hero">
+  <div class="hero-container">
+    <div class="hero-content-wrapper">
+      <div class="hero-img-wrapper">
+        <div class="img">
+          {% if site.plainwhite.portfolio_image_dark and site.plainwhite.dark_mode %}
+            <img
+              class="light"
+              src="{{site.baseurl }}/{{ site.plainwhite.portfolio_image }}"
+              alt="{{ site.plainwhite.name }}"
+            >
+            <img
+              class="dark"
+              src="{{site.baseurl }}/{{ site.plainwhite.portfolio_image_dark }}"
+              alt="{{ site.plainwhite.name }}"
+            >
+          {% else %}
+            <img src="{{site.baseurl }}/{{ site.plainwhite.portfolio_image }}" alt="{{ site.plainwhite.name }}">
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <h1 class="hero-title">
+            {{ site.plainwhite.name }}
+          </h1>
+          <p class="hero-subtitle">
+            {{ site.plainwhite.subtitle }}
+          </p>
+          {% if site.plainwhite.signature.enabled and (site.plainwhite.signature.position == 'hero' or site.plainwhite.signature.position == 'both') %}
+            <div class="signature-overlay">
+              {% include components/icons/signature.svg %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% if site.plainwhite.posts_carousel %}
+      <div class="hero-latest-posts-mobile">
+        <h2 class="latest-posts-title">Latests posts</h2>
+        <div class="carousel-container">
+          <div class="carousel-track">
+            {% for i in (1..2) %}
+              {% for post in site.posts limit: 6 %}
+                <a href="{{ post.url | relative_url }}" class="latest-post-card">
+                  <h3 class="post-card-title">{{ post.title }}</h3>
+                  <p class="post-card-desc">{{ post.excerpt | strip_html | truncatewords: 15 }}</p>
+                </a>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  {% include components/posts/latest-post-floating-cards.html.liquid %}
+</section>

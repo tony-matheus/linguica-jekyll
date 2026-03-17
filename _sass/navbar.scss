@@ -9,7 +9,6 @@
   backdrop-filter: blur(8px);
 }
 
-
 .navbar-container {
   display: flex;
   align-items: center;
@@ -22,13 +21,19 @@
     margin: 0 auto;
     max-width: 1440px;
   }
-  @media screen and (max-width: 1280px) { margin: 0 75px; }
-  @media screen and (max-width: 1024px) { margin: 0 35px; }
+  @media screen and (max-width: 1280px) {
+    margin: 0 75px;
+  }
+  @media screen and (max-width: 1024px) {
+    margin: 0 35px;
+  }
   @media screen and (max-width: $mobileW) {
     margin: 0 16px;
     height: 56px;
   }
-  @media screen and (max-width: $smallMobileW) { margin: 0 20px; }
+  @media screen and (max-width: $smallMobileW) {
+    margin: 0 20px;
+  }
 }
 
 // ─── Left: Brand ─────────────────────────────────────────────────────────────
@@ -64,7 +69,9 @@
   letter-spacing: -0.01em;
   transition: opacity 150ms ease;
 
-  @media screen and (max-width: $smallMobileW) { display: none; }
+  @media screen and (max-width: $smallMobileW) {
+    display: none;
+  }
 }
 
 // ─── Center: Search ───────────────────────────────────────────────────────────
@@ -81,15 +88,20 @@
   align-items: center;
   gap: 6px;
   border: 1px solid var(--border);
-  background: var(--card);
+  background-color: color-mix(in oklab, var(--input) 90%, transparent);
   color: var(--card-foreground);
   cursor: pointer;
   font-family: inherit;
   font-size: 13px;
-  transition: background 150ms ease, border-color 150ms ease, transform 100ms ease;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    transform 100ms ease;
   min-width: 200px;
 
-  @media screen and (max-width: $mobileW) { min-width: auto; }
+  @media screen and (max-width: $mobileW) {
+    min-width: auto;
+  }
 
   svg {
     width: 15px;
@@ -108,7 +120,9 @@
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
-    &:active { transform: none; }
+    &:active {
+      transform: none;
+    }
   }
 }
 
@@ -137,10 +151,14 @@
   }
 
   @media screen and (max-width: $mobileW) {
-    .search-btn__kbd { display: none; }
+    .search-btn__kbd {
+      display: none;
+    }
   }
   @media screen and (max-width: $smallMobileW) {
-    .search-btn__label { display: none; }
+    .search-btn__label {
+      display: none;
+    }
     border-radius: 50%;
     padding: 8px;
   }
@@ -192,7 +210,9 @@
   cursor: pointer;
   padding: 0;
   position: relative;
-  transition: background 150ms ease, border-color 150ms ease;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease;
 
   &:hover {
     background-color: color-mix(in oklab, var(--primary) 80%, transparent);
@@ -204,7 +224,9 @@
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
-    &:active { transform: none; }
+    &:active {
+      transform: none;
+    }
   }
 }
 
@@ -227,12 +249,22 @@
   }
 
   // Default (light mode): show sun, hide moon
-  &--sun  { opacity: 1; }
-  &--moon { opacity: 0; pointer-events: none; }
+  &--sun {
+    opacity: 1;
+  }
+  &--moon {
+    opacity: 0;
+    pointer-events: none;
+  }
 
   // Dark mode: show moon, hide sun
   [data-theme="dark"] & {
-    &--sun  { opacity: 0; pointer-events: none; }
-    &--moon { opacity: 1; }
+    &--sun {
+      opacity: 0;
+      pointer-events: none;
+    }
+    &--moon {
+      opacity: 1;
+    }
   }
 }

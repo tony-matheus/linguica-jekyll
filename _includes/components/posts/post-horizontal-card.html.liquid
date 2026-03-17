@@ -1,0 +1,50 @@
+{% assign date_format = site.plainwhite.date_format | default: '%b %-d, %Y' %}
+{% assign image_position = include.image_position | default: 'left' %}
+<article>
+  <div class="post-horizontal-card post-horizontal-card--image-{{ image_position }}">
+    <div class="post-horizontal-card__media">
+      {% if post.image %}
+        <a href="{{ post.url | relative_url }}" class="post-horizontal-card__media-link">
+          <div class="post-horizontal-card__image-wrapper">
+            <img
+              class="post-horizontal-card__image"
+              src="{{ site.baseurl }}/{{ post.image }}"
+              alt="{{ post.title | escape }}"
+              loading="lazy"
+            >
+          </div>
+        </a>
+      {% endif %}
+    </div>
+    <div class="post-horizontal-card__body ">
+      <a class="post-horizontal-card__link" href="{{ post.url | relative_url }}">
+        <time class="post-horizontal-card__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
+          {{ post.date | date: date_format }}
+        </time>
+        <h2 class="post-horizontal-card__title">{{ post.title | escape }}</h2>
+      </a>
+      <p class="post-horizontal-card__author">
+        by
+        <i class="icon-user" aria-hidden="true"></i>
+        {{ post.author | default: site.plainwhite.name }}
+      </p>
+
+      <div class="force-desktop">
+        {% if site.show_excerpts and post.excerpt %}
+          <div class="post-horizontal-card__excerpt">
+            {{ post.excerpt }}
+          </div>
+        {% endif %}
+        <a class="post-horizontal-card__read-more" href="{{ post.url | relative_url }}"> → Read Article </a>
+      </div>
+    </div>
+  </div>
+  <div class="force-mobile">
+    {% if site.show_excerpts and post.excerpt %}
+      <div class="post-horizontal-card__excerpt">
+        {{ post.excerpt }}
+      </div>
+    {% endif %}
+    <a class="post-horizontal-card__read-more" href="{{ post.url | relative_url }}"> → Read Article </a>
+  </div>
+</article>
