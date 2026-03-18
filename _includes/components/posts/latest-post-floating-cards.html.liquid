@@ -6,9 +6,10 @@
 {% assign rotations_start = '9, 6.087, 12, 15, 7, 8' | split: ',' %}
 {% assign rotations_end = '-10, -10, -10, -10, -10, -10' | split: ',' %}
 
-{% assign posts_count = site.posts | size %}
+{%- assign filtered_posts = site.posts | where: 'language', page.language -%}
+{% assign posts_count = filtered_posts | size %}
 {% if site.linguica.posts_bubbles and posts_count >= 4 %}
-  {% for post in site.posts limit: 6 %}
+  {% for post in filtered_posts limit: 6 %}
     {% assign i = forloop.index0 %}
     {% assign p_top = positions_top[i] | append: 'px' %}
     {% assign p_side = positions_side[i] %}
