@@ -21,7 +21,9 @@
         <time class="post-horizontal-card__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
           {{ post.date | date: date_format }}
         </time>
-        <h2 class="post-horizontal-card__title">{{ post.title | escape }}</h2>
+        <div class="post-title-box">
+          <h2 class="post-horizontal-card__title">{{ post.title | escape }}</h2>
+        </div>
       </a>
       <p class="post-horizontal-card__author">
         by
@@ -35,7 +37,7 @@
             {{ post.excerpt }}
           </div>
         {% endif %}
-        <a class="post-horizontal-card__read-more" href="{{ post.url | relative_url }}"> → Read Article </a>
+        <a class="post-horizontal-card__read-more" href="{{ post.url | relative_url }}"> Read Article → </a>
       </div>
     </div>
   </div>
@@ -45,6 +47,6 @@
         {{ post.excerpt }}
       </div>
     {% endif %}
-    <a class="post-horizontal-card__read-more" href="{{ post.url | relative_url }}"> → Read Article </a>
+    <a class="post-horizontal-card__read-more" href="{{ post.url | relative_url }}"> Read Article → </a>
   </div>
 </article>

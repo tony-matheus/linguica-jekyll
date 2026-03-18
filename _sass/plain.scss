@@ -282,7 +282,7 @@ h2 {
 
     a {
       display: block;
-      font-family: "Merriweather";
+      font-family: "Inter";
       text-align: center;
       padding: 1rem 0;
       text-decoration: none;
@@ -322,6 +322,7 @@ h2 {
   color: #555;
   min-width: 150px;
 }
+
 .post-meta {
   display: flex;
   justify-content: space-between;
@@ -343,6 +344,7 @@ h2 {
   line-height: 1.2em;
   font-size: 28px;
   margin-bottom: 10px;
+  font-weight: 600;
 }
 .posts {
   list-style-type: none;
@@ -401,7 +403,7 @@ h2 {
   }
 }
 .post {
-  font-family: "Merriweather", sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 300;
   color: #222;
   line-height: 1.9em;
@@ -425,6 +427,22 @@ h2 {
     font-family: Raleway, sans-serif;
   }
 }
+
+.post-title-box {
+  height: 102px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+
+  @media screen and (max-width: $mobileW) {
+    height: auto;
+  }
+}
+
 .post-vertical-card {
   list-style: none;
   margin-bottom: 2.5rem;
@@ -433,30 +451,29 @@ h2 {
     text-decoration: none;
     color: inherit;
     display: block;
-    background-image: linear-gradient(transparent 50%, transparent 50%);
-    background-size: 4px 4px;
-    background-position: 0 100%;
-    background-repeat: repeat-x;
     transition: color 150ms ease;
 
-    h2 {
-      display: inline-block;
-
+    .post-title-box {
       background-image: linear-gradient(transparent 50%, #425fe6 50%);
       background-position: 0% 100%;
       background-repeat: no-repeat;
       background-size: 0% 4px;
       transition:
         background-size 150ms ease-in-out,
-        color 150ms ease;
+        color 150ms ease-in-out;
+    }
+
+    h2 {
+      transition: color 150ms ease;
     }
 
     &:hover {
       color: var(--link-color);
-      background-image: linear-gradient(#0000 50%, #425fe6 50%);
+      .post-title-box {
+        background-size: 100% 4px;
+      }
       h2 {
         color: var(--link-color);
-        background-size: 100% 4px;
       }
     }
   }
@@ -471,7 +488,7 @@ h2 {
   .post-vertical-card__title {
     font-size: 1.75rem;
     line-height: 1.2;
-    margin: 0 0 1rem;
+    margin: 0;
     font-weight: 700;
     color: var(--foreground);
   }
@@ -505,7 +522,7 @@ h2 {
   }
 
   .post-vertical-card__excerpt {
-    font-family: "Merriweather", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 300;
     color: var(--foreground);
     line-height: 1.7;
@@ -631,19 +648,6 @@ h2 {
     }
   }
 
-  .post-horizontal-card__excerpt {
-    font-family: "Merriweather", sans-serif;
-    font-size: 0.875rem;
-    font-weight: 300;
-    color: var(--foreground);
-    line-height: 1.6;
-    margin-bottom: 0.75rem;
-
-    p {
-      margin: 0;
-    }
-  }
-
   .post-horizontal-card__read-more {
     font-weight: 500;
     text-decoration: none;
@@ -674,6 +678,38 @@ h2 {
   }
 }
 
+.post-horizontal-card__excerpt {
+  font-family: "Inter", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--foreground);
+  line-height: 1.6;
+  margin-block: 0.75rem;
+
+  p {
+    margin: 0;
+  }
+}
+
+.post-horizontal-card__read-more {
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--foreground);
+  background-image: linear-gradient(transparent 50%, transparent 50%);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 4px;
+  transition:
+    color 150ms ease-in-out,
+    background-size 150ms ease-in-out;
+
+  &:hover {
+    color: var(--link-color);
+    background-image: linear-gradient(#0000 50%, #425fe6 50%);
+    background-size: 100% 4px;
+  }
+}
+
 .post-card--mobile {
   display: block;
 
@@ -694,19 +730,21 @@ h2 {
   margin: 0 0 0.67em 0;
   display: flex;
   align-items: baseline;
+  justify-content: space-between;
   border-bottom: 1px solid #eee;
 }
 
 #posts-label {
-  font-size: 15px;
-  color: #555;
+  font-size: 28px;
+  color: var(--foreground);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   padding: 10px 0;
-  font-weight: normal;
+  font-weight: 600;
   margin: 0;
   overflow: hidden;
   transition: width 0.1s;
+  margin-bottom: 1rem;
 }
 table {
   th,

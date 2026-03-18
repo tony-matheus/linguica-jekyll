@@ -4,7 +4,9 @@
     <time class="post-vertical-card__date" datetime="{{ post.date | date: '%Y-%m-%d' }}">
       {{ post.date | date: date_format }}
     </time>
-    <h2 class="post-vertical-card__title">{{ post.title | escape }}</h2>
+    <div class="post-title-box">
+      <h2 class="post-vertical-card__title">{{ post.title | escape }}</h2>
+    </div>
     {% if post.image %}
       <div class="post-vertical-card__image-wrapper">
         <img
@@ -26,5 +28,5 @@
       {{ post.excerpt }}
     </div>
   {% endif %}
-  <a class="post-vertical-card__read-more" href="{{ post.url | relative_url }}"> → Read Article </a>
+  <a class="post-vertical-card__read-more" href="{{ post.url | relative_url }}"> Read Article → </a>
 </article>

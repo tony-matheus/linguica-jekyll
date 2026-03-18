@@ -96,7 +96,7 @@
     '    </a>' +
     '    <p class="post-horizontal-card__author">by <i class="icon-user" aria-hidden="true"></i> {author}</p>' +
     '    <p class="post-horizontal-card__excerpt">{excerpt}</p>' +
-    '    <a class="post-horizontal-card__read-more" href="{url}">→ Read Article</a>' +
+    '    <a class="post-horizontal-card__read-more" href="{url}">Read Article →</a>' +
     '  </div>' +
     '</article>';
 

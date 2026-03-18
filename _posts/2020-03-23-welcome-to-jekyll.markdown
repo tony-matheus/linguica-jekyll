@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Integrating razorpay into your webapp"
+title: "Integrating razorpay into your webapp Integrating razorpay into your webapp"
 date: 2020-03-23 21:03:36 +0530
 categories: Javascript NodeJS
 image: assets/imgs/img-thumbnail.jpg
