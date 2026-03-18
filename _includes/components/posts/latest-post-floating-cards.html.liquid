@@ -1,0 +1,60 @@
+{% assign positions_top = '200,180,400,400,560,560' | split: ',' %}
+{% assign positions_side = 'left,right,left,right,left,right' | split: ',' %}
+{% assign positions_val = '32,28,60,15,30,50' | split: ',' %}
+{% assign positions_spacing_end_x = '300, 300, 300, 300, 300, 300' | split: ',' %}
+{% assign positions_spacing_start_x = '0, 0, 0, 0, 0, 0' | split: ',' %}
+{% assign rotations_start = '9, 6.087, 12, 15, 7, 8' | split: ',' %}
+{% assign rotations_end = '-10, -10, -10, -10, -10, -10' | split: ',' %}
+
+{%- assign filtered_posts = site.posts | where: 'language', page.language -%}
+{% assign posts_count = filtered_posts | size %}
+{% if site.linguica.posts_bubbles and posts_count >= 4 %}
+  {% for post in filtered_posts limit: 6 %}
+    {% assign i = forloop.index0 %}
+    {% assign p_top = positions_top[i] | append: 'px' %}
+    {% assign p_side = positions_side[i] %}
+    {% assign p_val = positions_val[i] | append: 'px' %}
+    {% assign p_spacing_start_x = positions_spacing_start_x[i] %}
+    {% assign p_spacing_end_x = positions_spacing_end_x[i] %}
+    {% assign p_rotation_start = rotations_start[i] %}
+    {% assign p_rotation_end = rotations_end[i] %}
+
+    {% assign start_r = p_rotation_start %}
+    {% assign end_r = p_rotation_end %}
+    {% assign start_x = p_spacing_start_x | append: 'px' %}
+    {% assign end_x = p_spacing_end_x | append: 'px' %}
+
+    {% if p_side == 'left' %}
+      {% assign start_r = p_rotation_start | times: -1 %}
+      {% assign end_r = p_rotation_end | times: -1 %}
+      {% assign start_x = p_spacing_start_x | remove: 'px' | strip | times: -1 | append: 'px' %}
+      {% assign end_x = p_spacing_end_x | remove: 'px' | strip | times: -1 | append: 'px' %}
+    {% endif %}
+
+    {% if p_side == 'right' %}
+      {%
+        include components/posts/latest-post-floating-card.html.liquid
+        id=i
+        post=post
+        top=p_top
+        right=p_val
+        start_rotate=start_r
+        end_rotate=end_r
+        start_x=start_x
+        end_x=end_x
+      %}
+    {% else %}
+      {%
+        include components/posts/latest-post-floating-card.html.liquid
+        id=i
+        post=post
+        top=p_top
+        left=p_val
+        start_rotate=start_r
+        end_rotate=end_r
+        start_x=start_x
+        end_x=end_x
+      %}
+    {% endif %}
+  {% endfor %}
+{% endif %}

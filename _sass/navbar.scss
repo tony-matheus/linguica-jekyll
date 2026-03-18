@@ -1,0 +1,276 @@
+// ─── Navbar Wrapper ───────────────────────────────────────────────────────────
+#navbar {
+  background-color: var(--background);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.dark #navbar {
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  margin: 0 90px;
+  gap: 32px;
+
+  @media screen and (min-width: $bigScreenW) {
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+  @media screen and (max-width: 1280px) {
+    margin: 0 75px;
+  }
+  @media screen and (max-width: 1024px) {
+    margin: 0 35px;
+  }
+  @media screen and (max-width: $mobileW) {
+    margin: 0 16px;
+    height: 56px;
+  }
+  @media screen and (max-width: $smallMobileW) {
+    margin: 0 20px;
+  }
+}
+
+// ─── Left: Brand ─────────────────────────────────────────────────────────────
+.navbar-home {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+
+  &:hover .navbar-name {
+    opacity: 0.7;
+  }
+}
+
+.navbar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.navbar-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navbar-name-color);
+  letter-spacing: -0.01em;
+  transition: opacity 150ms ease;
+
+  @media screen and (max-width: $smallMobileW) {
+    display: none;
+  }
+}
+
+// ─── Center: Search ───────────────────────────────────────────────────────────
+.navbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+// Shared base
+.search-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  background-color: color-mix(in oklab, var(--input) 90%, transparent);
+  color: var(--card-foreground);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    transform 100ms ease;
+  min-width: 200px;
+
+  @media screen and (max-width: $mobileW) {
+    min-width: auto;
+  }
+
+  svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    stroke: currentColor;
+  }
+
+  &:hover {
+    background-color: color-mix(in oklab, var(--input) 50%, transparent);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+// Variant 1 — Pill (default, shown)
+.search-btn--pill {
+  padding: 7px 12px;
+  border-radius: 9999px;
+  gap: 8px;
+
+  .search-btn__label {
+    flex: 1;
+  }
+
+  .search-btn__kbd {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    background: var(--card);
+    color: var(--card-foreground);
+    font-size: 11px;
+    font-family: inherit;
+    letter-spacing: 0;
+    border: none;
+  }
+
+  @media screen and (max-width: $mobileW) {
+    .search-btn__kbd {
+      display: none;
+    }
+  }
+  @media screen and (max-width: $smallMobileW) {
+    .search-btn__label {
+      display: none;
+    }
+    border-radius: 50%;
+    padding: 8px;
+  }
+}
+
+// Variant 2 — Icon-only (compact, square)
+.search-btn--icon {
+  padding: 8px;
+  border-radius: 8px;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+// Variant 3 — Full (wider, text-forward)
+.search-btn--full {
+  padding: 8px 16px;
+  border-radius: 10px;
+  min-width: 200px;
+  justify-content: flex-start;
+
+  .search-btn__label {
+    flex: 1;
+    text-align: left;
+    color: var(--search-color);
+  }
+}
+
+// ─── Right: Dark Mode Toggle ──────────────────────────────────────────────────
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease;
+
+  &:hover {
+    background-color: color-mix(in oklab, var(--primary) 80%, transparent);
+  }
+
+  &:active {
+    transform: scale(0.93);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+.theme-toggle__track {
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.theme-toggle__icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  // Default (light mode): show sun, hide moon
+  &--sun {
+    opacity: 1;
+  }
+  &--moon {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  // Dark mode: show moon, hide sun
+  [data-theme="dark"] & {
+    &--sun {
+      opacity: 0;
+      pointer-events: none;
+    }
+    &--moon {
+      opacity: 1;
+    }
+  }
+}

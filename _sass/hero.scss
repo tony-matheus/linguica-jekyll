@@ -1,0 +1,358 @@
+.hero {
+  height: calc(100vh - var(--navbar-size));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-block: 32px;
+  color: var(--foreground);
+  position: relative;
+  overflow-x: hidden;
+
+  @media screen and (min-width: $bigScreenW) {
+    height: calc(50vh - var(--navbar-size));
+  }
+
+  @media screen and (max-width: $mobileW) {
+    align-items: start;
+  }
+
+  .hero-title {
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    text-align: center;
+  }
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  gap: 16px;
+
+  @media screen and (max-width: $mobileW) {
+    justify-content: flex-start;
+  }
+
+  .hero-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media screen and (max-width: $mobileW) {
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .hero-img-wrapper {
+    width: 300px;
+    height: 300px;
+    padding: 8px;
+    border-radius: 24px;
+    background-color: var(--foreground);
+
+    @media screen and (min-width: $bigScreenW) {
+      width: 400px;
+      height: 400px;
+    }
+    @media screen and (max-width: 1280px) {
+      width: 400px;
+      height: 400px;
+    }
+    @media screen and (max-width: 1024px) {
+      width: 400px;
+      height: 400px;
+    }
+
+    @media screen and (max-width: $mobileW) {
+      width: 300px;
+      height: 300px;
+    }
+    @media screen and (max-width: $smallMobileW) {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  .img {
+    border-radius: 16px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .hero-latest-posts-mobile {
+    display: none; // Hidden on desktop
+    width: 100vw;
+    margin-top: auto;
+    position: relative;
+    max-width: 100vw;
+
+    @media screen and (max-width: $mobileW) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .latest-posts-title {
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0 0 8px 20px;
+      text-align: left;
+      align-self: flex-start;
+    }
+
+    .carousel-container {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      position: relative;
+      // mask-image to fade edges nicely
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+      );
+
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      padding: 0 16px;
+      width: max-content;
+      will-change: transform;
+
+      // Make sure interactions don't conflict with touch swipe
+      touch-action: pan-y;
+
+      @media (prefers-reduced-motion: reduce) {
+        // When reduced motion, JS won't attach, native scrolling overflow-x applies
+        overflow-x: auto;
+        padding-bottom: 16px;
+      }
+    }
+
+    .latest-post-card {
+      flex: 0 0 280px;
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      text-decoration: none;
+      color: var(--foreground);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      max-width: 280px;
+
+      transition:
+        transform 150ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        border-color 150ms ease;
+
+      &:active {
+        transform: scale(0.97); // web-animation-design responsive interaction
+      }
+
+      .post-card-title {
+        font-size: 16px;
+        height: 48px;
+        font-weight: 600;
+        margin: 0;
+        line-height: 1.3;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--foreground);
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+      }
+
+      .post-card-desc {
+        font-size: 14px;
+        color: var(--muted-foreground);
+        margin: 0;
+        line-height: 1.4;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 39.2px; // Fixed height for exactly 2 lines (14 * 1.4 * 2)
+      }
+    }
+  }
+}
+
+.signature-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 10;
+
+  width: 300px;
+  height: auto;
+
+  @media screen and (max-width: $mobileW) {
+    width: 150px;
+  }
+
+  svg {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+
+    // Override original colors to match theme
+    g {
+      fill: transparent;
+    }
+
+    path {
+      // Configured via JS dynamically
+      stroke-dasharray: var(--path-length, 10000);
+      stroke-dashoffset: var(--path-length, 10000);
+
+      stroke: #4da3ff;
+      stroke-width: 15; // works well with potrace outlines
+      fill: transparent;
+
+      // ease-out for entrance animations
+      animation:
+        drawSignature 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) forwards,
+        fillSignature 0.5s ease-in-out forwards;
+
+      animation-delay:
+        var(--path-delay, 0ms), calc(1.5s + var(--path-delay, 0ms));
+      will-change: stroke-dashoffset, fill;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none !important;
+        stroke-dashoffset: 0 !important;
+        fill: #4da3ff !important;
+        stroke: transparent !important;
+      }
+    }
+  }
+}
+
+@keyframes drawSignature {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fillSignature {
+  to {
+    fill: #4da3ff;
+    stroke: transparent;
+  }
+}
+
+.latest-post-floating-card {
+  width: 192px;
+  height: 162px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow:
+    0 0 2px #00000026,
+    0 8px 40px #0000000a,
+    0 2px 5px #0000000d;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  position: absolute;
+  z-index: 100;
+  will-change: transform, opacity;
+  text-decoration: none;
+  color: var(--foreground);
+  transition: border-color 150ms ease;
+
+  &:hover {
+    border-color: var(--primary);
+  }
+
+  @media screen and (max-width: 1024px) {
+    display: none;
+  }
+
+  .post-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+    margin-bottom: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--foreground);
+  }
+
+  .post-card-desc {
+    font-size: 11px;
+    color: var(--muted-foreground);
+    margin: 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+
+  .card-content__thumb {
+    width: 100%;
+    height: 70px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-content__body {
+    padding: 8px;
+  }
+}
+
+// Floating animation removed in favor of scroll-based Intersection Observer animation

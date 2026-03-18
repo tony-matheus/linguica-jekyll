@@ -1,4 +1,4 @@
-# plainwhite
+# linguica
 
 Simplistic jekyll portfolio-style theme for writers.
 
@@ -6,19 +6,20 @@ a theme made with <3 by Tony Lima, for Gustavo Araujo, no open-source intended j
 
 # References
 
-New theme forked from https://github.com/samarsault/plainwhite-jekyll, all initial credits go to https://github.com/samarsault.
+New theme forked from https://github.com/samarsault/linguica-jekyll, all initial credits go to https://github.com/samarsault.
 
 # DELETE FROM HERE BELOW
+
 **Demo**: [samarsault.com](https://samarsault.com)
 
-![plainwhite theme preview](/screenshot.png)
+![linguica theme preview](/screenshot.png)
 
 ## Installation on Github Pages
 
 Add this line to your site's `_config.yml`:
 
 ```yaml
-remote_theme: samarsault/plainwhite-jekyll
+remote_theme: samarsault/linguica-jekyll
 ```
 
 ## Installation
@@ -26,13 +27,13 @@ remote_theme: samarsault/plainwhite-jekyll
 Add this line to your Jekyll site's `Gemfile`:
 
 ```ruby
-gem "plainwhite"
+gem "linguica"
 ```
 
 And add this line to your Jekyll site's `_config.yml`:
 
 ```yaml
-theme: plainwhite
+theme: linguica
 ```
 
 And then execute:
@@ -41,14 +42,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install plainwhite
+    $ gem install linguica
 
 ## Usage
 
-The "plainwhite" key in \_config.yml is used to customize the theme data.
+The "linguica" key in \_config.yml is used to customize the theme data.
 
 ```yaml
-plainwhite:
+linguica:
   name: Adam Denisov
   tagline: Developer. Designer
   date_format: "%b %-d, %Y"
@@ -64,42 +65,42 @@ plainwhite:
 The placeholder portfolio image can be replaced by the desired image by placing it as `assets/portfolio.png` in your jekyll website, or by changing the following line in `_config.yaml`
 
 ```yaml
-plainwhite:
-  portfolio_image:  "assets/portfolio.png" # the path from the base directory of the site to the image to display (no / at the start)
+linguica:
+  portfolio_image: "assets/portfolio.png" # the path from the base directory of the site to the image to display (no / at the start)
 ```
 
 To use a different image for dark mode, e.g. with different colors that work better in dark mode, add a `portfolio_image_dark` entry in addition to the `portfolio_image`.
 
 ```yaml
-plainwhite:
-  portfolio_image:      "assets/portfolio.png"
+linguica:
+  portfolio_image: "assets/portfolio.png"
   portfolio_image_dark: "assets/portfolio_dark.png"
 ```
 
 **Comments (Disqus)**
 
-Comments on posts can be enabled by specifying your disqus_shortname under plainwhite in `_config.yml`. For example,
+Comments on posts can be enabled by specifying your disqus_shortname under linguica in `_config.yml`. For example,
 
 ```yaml
-plainwhite:
+linguica:
   disqus_shortname: games
 ```
 
 **Google Analytics**
 
-It can be enabled by specifying your analytics id under plainwhite in `_config.yml`
+It can be enabled by specifying your analytics id under linguica in `_config.yml`
 
 ```yaml
-plainwhite:
+linguica:
   analytics_id: "< YOUR ID >"
 ```
 
 **Sitemap**
 
-It can be toggled by the following line to under plainwhite in `_config.yml`
+It can be toggled by the following line to under linguica in `_config.yml`
 
 ```yaml
-plainwhite:
+linguica:
   sitemap: true
 ```
 
@@ -122,7 +123,7 @@ show_excerpts: true
 Navigation can be enabled by adding the following line to your `_config.yml`
 
 ```yaml
-plainwhite:
+linguica:
   navigation:
     - title: My Work
       url: "/my-work"
@@ -132,11 +133,11 @@ plainwhite:
 
 **Mobile**
 
-By default, Plainwhite places the sidebar (logo, name, tagline etc.) above the content on mobile (narrow screens).
+By default, linguica places the sidebar (logo, name, tagline etc.) above the content on mobile (narrow screens).
 To condense it (moving some things to the bottom of the page and making the rest smaller) so it takes up less space, add the following to your `_config.yml`:
 
 ```yaml
-plainwhite:
+linguica:
   condensed_mobile:
     - home
     - post
@@ -152,18 +153,18 @@ Dark mode can be enabled by setting the `dark_mode` flag in your `_config.yml`
 The website will check the OS preferred color scheme and set the theme accordingly, the preference will then be saved in a cookie
 
 ```yaml
-plainwhite:
+linguica:
   dark_mode: true
 ```
 
-![plainwhite dark theme previe](/dark.png)
+![linguica dark theme previe](/dark.png)
 
 **Multiline tagline**
 
 Tagline can be multiline in this way
 
 ```yaml
-plainwhite:
+linguica:
   tagline: |
   First Line.
 
@@ -177,7 +178,7 @@ plainwhite:
 Search-bar can be enabled by adding the following line to `config.yml`
 
 ```yaml
-plainwhite:
+linguica:
   search: true
 ```
 
@@ -196,7 +197,7 @@ baseurl: "/blog"
 You can set the `lang` attribute of the `<html>` tag on your pages by changing the following line in `_config.yml`:
 
 ```yaml
-plainwhite:
+linguica:
   html_lang: "en"
 ```
 
@@ -204,7 +205,7 @@ plainwhite:
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/samarsault/plainwhite-jekyll. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/samarsault/linguica-jekyll. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## Development
 
@@ -213,9 +214,10 @@ To set up your environment to develop this theme, run `bundle install`.
 Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
 
 When your theme is released, only the files in `_layouts`, `_includes`, `_sass` and `assets` tracked with Git will be bundled.
-To add a custom directory to your theme-gem, please edit the regexp in `plainwhite.gemspec` accordingly.
+To add a custom directory to your theme-gem, please edit the regexp in `linguica.gemspec` accordingly.
 
 ## Donation
+
 If this project help you reduce time to develop, you can give me a cup of coffee :)
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://paypal.me/thelehhman)
