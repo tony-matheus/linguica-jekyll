@@ -57,7 +57,7 @@
   z-index: 1;
   width: 100%;
   max-width: 560px;
-  max-height: calc(100vh - 6rem);
+  max-height: calc(100svh - 6rem);
   display: flex;
   flex-direction: column;
   background: var(--background);
@@ -120,7 +120,9 @@
   background: transparent;
   color: var(--muted-foreground);
   cursor: pointer;
-  transition: background 150ms ease, color 150ms ease;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
 
   &:hover {
     background: var(--muted);

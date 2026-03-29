@@ -1,0 +1,18 @@
+{% assign post = include.post %}
+<div class="card-content">
+  {% if post.image %}
+    <div class="card-content__thumb">
+      <img
+        src="{{ site.baseurl }}/{{ post.image }}"
+        alt="{{ post.title | escape }}"
+        loading="lazy"
+      >
+    </div>
+  {% endif %}
+  <div class="card-content__body">
+    <h3 class="post-card-title">{{ post.title | escape }}</h3>
+    <p class="post-card-desc">
+      {{ post.excerpt | strip_html | truncatewords: 8 }}
+    </p>
+  </div>
+</div>

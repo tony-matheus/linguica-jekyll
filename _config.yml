@@ -23,6 +23,12 @@ linguica:
     enabled: true
     position: "footer"
     svg: "assets/signature.svg"
+  wide_hero_image:
+    desktop: "assets/imgs/wide-hero-image.jpg"
+    mobile: "assets/imgs/wide-hero-image-mobile.png"
+  wide_hero_text_color:
+    dark: "#ffffff"
+    light: "#000000"
   portfolio_image: "assets/portfolio.png" # the path from the base directory of the site to the image to display (no / at the start)
   html_lang: "en" # set the lang attribute of the <html> tag for the pages. See here for a list of codes: https://www.w3schools.com/tags/ref_country_codes.asp
   post_banner: "pixels" # none, color, pixels, blur

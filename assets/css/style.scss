@@ -15,3 +15,13 @@
   @import "toggle";
   @import "dark";
 {%- endif -%}
+
+{% if site.linguica.wide_hero_image != blank %}
+.wide-hero {
+  background-image: url("{{ site.linguica.wide_hero_image.desktop | relative_url }}");
+
+  @media screen and (max-width: $mobileW) {
+    background-image: url("{{ site.linguica.wide_hero_image.mobile | relative_url }}");
+  }
+}
+{% endif %}
