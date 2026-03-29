@@ -195,7 +195,7 @@ h2 {
   }
   .about {
     display: flex;
-    height: 100vh;
+    height: 100svh;
     padding-bottom: 15vh;
     @media screen and (max-width: $mobileW) {
       height: auto;

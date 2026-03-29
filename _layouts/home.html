@@ -2,7 +2,13 @@
 layout: default
 ---
 
-{% include sections/hero.html.liquid %} {%- if page.title -%}
+{% assign hero_type = site.linguica.hero_type | default: 'wide-hero' %}
+{% if hero_type == 'hero' %}
+  {% include sections/heros/hero.html.liquid %}
+{% else %}
+  {% include sections/heros/wide-hero.html.liquid %}
+{% endif %}
+{%- if page.title -%}
 <h1 class="page-heading">{{ page.title }}</h1>
 {%- endif -%} {%- if site.posts.size > 0 -%}
 <div class="container">

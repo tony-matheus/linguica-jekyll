@@ -1,0 +1,40 @@
+<section class="wide-hero">
+  <div class="wide-hero-container">
+    <div class="wide-hero-content-wrapper">
+      <div class="wide-hero-posts">
+        <h4 class="wide-hero-posts__title">Latest Posts</h4>
+        <ul class="wide-hero-posts__list" role="list">
+          {% for post in site.posts limit: 6 %}
+            <li class="wide-hero-posts__item">
+              <a href="{{ post.url | relative_url }}" class="wide-hero-posts__link">
+                {% include components/posts/post-card-content.html.liquid post=post %}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="wide-hero-name-container">
+        <span class="wide-hero-tagline">{{ site.linguica.tagline }}</span>
+        {% assign wide_hero_name_words = site.linguica.name | split: ' ' %}
+        <h1 class="wide-hero-title">
+          {{- wide_hero_name_words.first -}}
+          {%- if wide_hero_name_words.size > 1 -%}
+            <br>
+            {%- for w in wide_hero_name_words -%}
+              {%- unless forloop.first -%}
+                {{ w }}
+                {%- unless forloop.last %} {% endunless -%}
+              {%- endunless -%}
+            {%- endfor -%}
+          {%- endif -%}
+        </h1>
+      </div>
+    </div>
+
+    {% comment %}
+      <div class="mobile-wide-hero-posts">
+        {% include sections/heros/hero-latest-posts-mobile.html.liquid %}
+      </div>
+    {% endcomment %}
+  </div>
+</section>
