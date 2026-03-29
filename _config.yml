@@ -19,6 +19,7 @@ linguica:
   dark_mode: true # set to true to add dark mode toggle
   posts_carousel: true
   posts_bubbles: true
+  hero_type: "wide-hero"
   signature:
     enabled: true
     position: "footer"
