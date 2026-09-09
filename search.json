@@ -11,10 +11,11 @@ sitemap:
       "sub-titile" : "{{ post.subtitle | escape | replace: '"', '\"' }}",
       "sub-titile-lower" : "{{ post.subtitle | escape | downcase | replace: '"', '\"' }}",
       "categories" : "{{ post.categories }}",
+      "language" : "{{ post.language }}",
       "tags"     : "{{ post.tags | join: ', ' }}",
       "url"      : "{{ site.baseurl }}{{ post.url }}",
       "date"     : "{{ post.date | date: site.linguica.date_format | default: '%b %-d, %Y' }}",
-      "content"     : "{{ post.content | strip_html | strip_newlines | remove_chars | escape | truncate: 200 | replace: '"', '\"' }}",
+      "content"     : "{{ post.content | strip_html | strip_newlines | escape | truncate: 200 | replace: '"', '\"' }}",
       "excerpt"  : "{{ post.excerpt | strip_html | strip_newlines | escape | truncate: 80 | replace: '"', '\"' }}",
       "image"    : "{{ post.image | default: '' }}",
       "author"   : "{{ post.author | default: site.linguica.name | escape | replace: '"', '\"' }}"

@@ -6,6 +6,8 @@
   aria-label="Search posts"
   aria-hidden="true"
   data-baseurl="{{ site.baseurl }}"
+  data-search-json="{{ '/search.json' | relative_url }}"
+  data-language="{{ page.language }}"
 >
   <div class="search-modal__backdrop" id="searchModalBackdrop"></div>
   <div class="search-modal__dialog" id="searchModalDialog">

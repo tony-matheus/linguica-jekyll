@@ -49,8 +49,10 @@
     searchModalInput.value = '';
     isTyping = false;
     resetToEmptyState();
-    searchModalInput.focus();
     document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function () {
+      searchModalInput.focus();
+    });
   }
 
   function closeModal() {
@@ -65,19 +67,10 @@
     }, duration);
   }
 
-  function escapeHtml(str) {
-    if (str == null) return '';
-    var s = String(str);
-    return s
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
   function buildImageSrc(image) {
     if (!image || !image.trim()) return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="1" height="1"%3E%3C/svg%3E';
-    return baseurl + (baseurl.endsWith('/') ? '' : '/') + image;
+    if (/^(https?:)?\/\//.test(image.trim())) return image.trim();
+    return baseurl.replace(/\/$/, '') + '/' + image.trim().replace(/^\/+/, '');
   }
 
   var compactCardTemplate =
@@ -100,43 +93,63 @@
     '  </div>' +
     '</article>';
 
-  SimpleJekyllSearch({
-    searchInput: searchModalInput,
-    resultsContainer: searchModalResults,
-    json: '{{ "/search.json" | relative_url }}',
-    searchResultTemplate: compactCardTemplate,
-    noResultsText: '<p class="search-modal__no-results">No results found.</p>',
-    middleware: function (key, value, template) {
-      if (value === undefined || value === null) return '';
-      var v = String(value);
-      if (key === 'title' || key === 'excerpt' || key === 'author') return escapeHtml(v);
-      if (key === 'image') return buildImageSrc(value);
-      return v;
-    },
-    success: function () {
-      if (searchModalPlaceholder && searchModalResults.contains(searchModalPlaceholder)) {
-        searchModalPlaceholder.remove();
-      }
-    },
-    noResults: function () {
-      var query = searchModalInput.value.trim();
+  // Posts live in language folders (_posts/en, _posts/pt-br, ...) and every post
+  // carries its folder's `language`. Scope results to the language of the page
+  // the modal was opened from; entries without a language stay searchable.
+  var pageLanguage = searchModalEl.getAttribute('data-language') || '';
 
-      if (!query) {
-        resetToEmptyState();
-        return;
-      }
+  function scopeToLanguage(posts) {
+    if (!Array.isArray(posts) || !pageLanguage) return posts || [];
+    return posts.filter(function (post) {
+      return !post.language || post.language === pageLanguage;
+    });
+  }
 
-      if (isTyping) return;
-
-      if (searchModalPlaceholder) {
-        searchModalPlaceholder.textContent = 'No results found.';
-        if (!searchModalResults.contains(searchModalPlaceholder)) {
-          searchModalResults.innerHTML = '';
-          searchModalResults.appendChild(searchModalPlaceholder);
+  function initSearch(posts) {
+    SimpleJekyllSearch({
+      searchInput: searchModalInput,
+      resultsContainer: searchModalResults,
+      json: posts,
+      searchResultTemplate: compactCardTemplate,
+      noResultsText: '<p class="search-modal__no-results">No results found.</p>',
+      // search.json already HTML-escapes its text fields, so only the image
+      // needs fixing up: entries store site-root paths, the modal can be open
+      // on a page at any depth.
+      templateMiddleware: function (key, value) {
+        if (value === undefined || value === null) return '';
+        if (key === 'image') return buildImageSrc(String(value));
+        return String(value);
+      },
+      success: function () {
+        if (searchModalPlaceholder && searchModalResults.contains(searchModalPlaceholder)) {
+          searchModalPlaceholder.remove();
         }
-      }
-    },
-  });
+      },
+      noResults: function () {
+        var query = searchModalInput.value.trim();
+
+        if (!query) {
+          resetToEmptyState();
+          return;
+        }
+
+        if (isTyping) return;
+
+        if (searchModalPlaceholder) {
+          searchModalPlaceholder.textContent = 'No results found.';
+          if (!searchModalResults.contains(searchModalPlaceholder)) {
+            searchModalResults.innerHTML = '';
+            searchModalResults.appendChild(searchModalPlaceholder);
+          }
+        }
+      },
+    });
+  }
+
+  fetch(searchModalEl.getAttribute('data-search-json') || baseurl + '/search.json')
+    .then(function (response) { return response.json(); })
+    .then(function (posts) { initSearch(scopeToLanguage(posts)); })
+    .catch(function () { initSearch([]); });
 
   searchModalResults.addEventListener('click', function (e) {
     if (e.target.closest('.search-result-card a')) closeModal();

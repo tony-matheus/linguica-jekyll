@@ -2,12 +2,17 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  padding: 7px 14px;
   border: 1px solid var(--border);
+  border-radius: 9999px;
   background: var(--card);
   color: var(--card-foreground);
   cursor: pointer;
   font-family: inherit;
   font-size: 13px;
+  line-height: 1.2;
+  white-space: nowrap;
+  text-decoration: none;
   transition:
     background 150ms ease,
     border-color 150ms ease,
@@ -22,6 +27,7 @@
 
   &:hover {
     transform: scale(0.98);
+    color: var(--card-foreground);
     background-color: color-mix(in oklab, var(--input) 50%, transparent);
   }
 

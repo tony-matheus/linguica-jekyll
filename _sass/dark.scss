@@ -48,6 +48,9 @@
   a {
     color: $dark_link_color;
   }
+  a.btn {
+    color: var(--card-foreground);
+  }
   #title a {
     color: #fff;
     &:hover {
